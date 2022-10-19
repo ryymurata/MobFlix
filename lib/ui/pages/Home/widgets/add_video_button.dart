@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class AddVideoButton extends StatefulWidget {
-  final void Function()? onPressed;
-  const AddVideoButton({super.key, required this.onPressed});
+  const AddVideoButton({super.key});
 
   @override
   State<AddVideoButton> createState() => _AddVideoButtonState();
@@ -19,7 +18,7 @@ class _AddVideoButtonState extends State<AddVideoButton> {
         child: FittedBox(
           child: FloatingActionButton(
             backgroundColor: const Color(0xFF7B61FF),
-            onPressed: widget.onPressed,
+            onPressed: () => Navigator.pushNamed(context, '/registerVideo'),
             child: const Icon(
               Icons.add,
               size: 39,

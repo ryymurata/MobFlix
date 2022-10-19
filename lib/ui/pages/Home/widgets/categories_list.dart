@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobflix/widgets/category_tag.dart';
+import 'package:mobflix/ui/shared/category_tag.dart';
 
 class CategoriesList extends StatelessWidget {
   const CategoriesList({super.key});
@@ -13,22 +13,19 @@ class CategoriesList extends StatelessWidget {
         child: Row(
           children: const [
             SizedBox(width: 35),
-            CategoryTag(categoryName: "Front End", tagColor: Color(0xFF5781EF)),
+            CategoryTag(categoryName: "Front End"),
             SizedBox(width: 18),
-            CategoryTag(
-                categoryName: "Programação", tagColor: Color(0xFF19940F)),
+            CategoryTag(categoryName: "Programação"),
             SizedBox(width: 18),
-            CategoryTag(categoryName: "Mobile", tagColor: Color(0xFFD82D2D)),
+            CategoryTag(categoryName: "Mobile"),
             SizedBox(width: 18),
-            CategoryTag(categoryName: "Back End", tagColor: Color(0xFFD88B2D)),
+            CategoryTag(categoryName: "Back End"),
             SizedBox(width: 18),
-            CategoryTag(
-                categoryName: "Data Science", tagColor: Color(0xFFD8D22D)),
+            CategoryTag(categoryName: "Data Science"),
             SizedBox(width: 18),
-            CategoryTag(categoryName: "Devops", tagColor: Color(0xFF2DAAD8)),
+            CategoryTag(categoryName: "Devops"),
             SizedBox(width: 18),
-            CategoryTag(
-                categoryName: "Ux e Design", tagColor: Color(0xFFCD2DD8)),
+            CategoryTag(categoryName: "Ux e Design"),
             SizedBox(width: 35),
           ],
         ),

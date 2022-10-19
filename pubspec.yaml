@@ -64,6 +64,7 @@ flutter:
   assets:
     - images/Banner.png
     - images/video_thumb.png
+    - images/default_preview.png
   #   - images/a_dot_ham.jpeg
   
 

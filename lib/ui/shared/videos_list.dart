@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobflix/widgets/video_card.dart';
+import 'package:mobflix/ui/shared/video_card.dart';
 
 class VideosList extends StatefulWidget {
   const VideosList({super.key});

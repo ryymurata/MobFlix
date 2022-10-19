@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:mobflix/utils/tag_colors.dart';
 
 class CategoryTag extends StatefulWidget {
   final String categoryName;
-  final Color tagColor;
-  const CategoryTag(
-      {super.key, required this.categoryName, required this.tagColor});
+
+  const CategoryTag({super.key, required this.categoryName});
 
   @override
   State<CategoryTag> createState() => _CategoryTagState();
@@ -16,7 +16,7 @@ class _CategoryTagState extends State<CategoryTag> {
     return ElevatedButton(
       onPressed: () {},
       style: ElevatedButton.styleFrom(
-          backgroundColor: widget.tagColor,
+          backgroundColor: TagColors.tagColors[widget.categoryName],
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
           padding: const EdgeInsets.symmetric(horizontal: 22, vertical: 0)),

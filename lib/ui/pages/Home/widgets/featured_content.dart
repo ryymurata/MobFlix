@@ -18,10 +18,6 @@ class _FeaturedContentState extends State<FeaturedContent> {
           bottom: 22,
           child: ElevatedButton(
             onPressed: () {},
-            style: ElevatedButton.styleFrom(
-                backgroundColor: const Color(0xFF2478DF),
-                shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(8))),
             child: const Text(
               "Assista agora",
               style: TextStyle(fontSize: 18),

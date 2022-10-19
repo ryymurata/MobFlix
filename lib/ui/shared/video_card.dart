@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:mobflix/widgets/category_tag.dart';
+import 'package:mobflix/ui/shared/category_tag.dart';
 
 class VideoCard extends StatelessWidget {
   const VideoCard({super.key});
@@ -11,8 +11,7 @@ class VideoCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CategoryTag(
-              categoryName: "Mobile", tagColor: Color(0xFFD82D2D)),
+          const CategoryTag(categoryName: "Mobile"),
           GestureDetector(
             onTap: () {
               print("video selected");
