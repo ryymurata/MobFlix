@@ -14,7 +14,7 @@ class _RegisterVideoState extends State<RegisterVideo> {
     return Scaffold(
         body: SafeArea(
       child: Padding(
-        padding: EdgeInsets.fromLTRB(36, 36, 36, 0),
+        padding: const EdgeInsets.fromLTRB(36, 36, 36, 0),
         child: SingleChildScrollView(
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -42,17 +42,6 @@ class _RegisterVideoState extends State<RegisterVideo> {
       title,
       style: const TextStyle(
           color: Colors.white, fontSize: 32, fontWeight: FontWeight.bold),
-    );
-  }
-
-  Widget _buildInputName(String inputName) {
-    return Padding(
-      padding: const EdgeInsets.only(bottom: 8.0),
-      child: Text(
-        inputName,
-        style: TextStyle(
-            color: Colors.white, fontSize: 14, fontWeight: FontWeight.bold),
-      ),
     );
   }
 

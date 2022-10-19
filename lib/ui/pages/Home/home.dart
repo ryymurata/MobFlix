@@ -28,6 +28,6 @@ class Home extends StatelessWidget {
             ),
           ),
         ),
-        floatingActionButton: AddVideoButton());
+        floatingActionButton: const AddVideoButton());
   }
 }

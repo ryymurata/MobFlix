@@ -21,7 +21,7 @@ class _ActionButtonState extends State<ActionButton> {
                 ElevatedButton.styleFrom(backgroundColor: widget.buttonColor),
             child: Text(
               widget.buttonText,
-              style: TextStyle(fontSize: 18),
+              style: const TextStyle(fontSize: 18),
             )));
   }
 }
