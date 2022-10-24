@@ -3,8 +3,12 @@ import 'package:flutter/material.dart';
 class ActionButton extends StatefulWidget {
   final String buttonText;
   final Color buttonColor;
+  final GlobalKey<FormState> formKey;
   const ActionButton(
-      {super.key, required this.buttonText, required this.buttonColor});
+      {super.key,
+      required this.buttonText,
+      required this.buttonColor,
+      required this.formKey});
 
   @override
   State<ActionButton> createState() => _ActionButtonState();

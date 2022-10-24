@@ -16,14 +16,16 @@ class Home extends StatelessWidget {
           ),
           centerTitle: true,
         ),
-        body: Center(
-          child: SingleChildScrollView(
-            physics: const ScrollPhysics(),
+        body: SingleChildScrollView(
+          physics: const ScrollPhysics(),
+          child: Container(
+            alignment: Alignment.topCenter,
             child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: const [
                 FeaturedContent(),
                 CategoriesList(),
-                VideosList()
+                VideosList(),
               ],
             ),
           ),

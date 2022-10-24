@@ -1,8 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:mobflix/models/video.dart';
+import 'package:mobflix/services/api_service.dart';
 import 'package:mobflix/ui/shared/category_tag.dart';
 
-class VideoCard extends StatelessWidget {
-  const VideoCard({super.key});
+class VideoCard extends StatefulWidget {
+  final Video video;
+  const VideoCard({super.key, required this.video});
+
+  @override
+  State<VideoCard> createState() => _VideoCardState();
+}
+
+class _VideoCardState extends State<VideoCard> {
+  ApiService service = ApiService();
 
   @override
   Widget build(BuildContext context) {
@@ -11,11 +21,9 @@ class VideoCard extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          const CategoryTag(categoryName: "Mobile"),
+          CategoryTag(categoryName: widget.video.videoCategory!),
           GestureDetector(
-            onTap: () {
-              print("video selected");
-            },
+            onTap: () {},
             child: Container(
                 decoration: const BoxDecoration(boxShadow: [
                   BoxShadow(
@@ -24,7 +32,7 @@ class VideoCard extends StatelessWidget {
                     offset: Offset(0, 5),
                   )
                 ]),
-                child: Image.asset("images/video_thumb.png")),
+                child: Image.network(widget.video.videoThumbnailUrl!)),
           ),
           const SizedBox(height: 18)
         ],
