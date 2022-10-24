@@ -1,30 +1,27 @@
 import 'package:flutter/material.dart';
 
-class ActionButton extends StatefulWidget {
-  final String buttonText;
-  final Color buttonColor;
+class ActionButton extends StatelessWidget {
   final GlobalKey<FormState> formKey;
-  const ActionButton(
-      {super.key,
-      required this.buttonText,
-      required this.buttonColor,
-      required this.formKey});
+  final void Function() onPressed;
+  final String buttonTitle;
+  final Color buttonColor;
+  const ActionButton({
+    super.key,
+    required this.formKey,
+    required this.onPressed,
+    required this.buttonTitle,
+    required this.buttonColor,
+  });
 
-  @override
-  State<ActionButton> createState() => _ActionButtonState();
-}
-
-class _ActionButtonState extends State<ActionButton> {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
         height: 48,
         child: ElevatedButton(
-            onPressed: () {},
-            style:
-                ElevatedButton.styleFrom(backgroundColor: widget.buttonColor),
+            onPressed: onPressed,
+            style: ElevatedButton.styleFrom(backgroundColor: buttonColor),
             child: Text(
-              widget.buttonText,
+              buttonTitle,
               style: const TextStyle(fontSize: 18),
             )));
   }

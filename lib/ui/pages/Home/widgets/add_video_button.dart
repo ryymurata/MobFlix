@@ -1,13 +1,8 @@
 import 'package:flutter/material.dart';
 
-class AddVideoButton extends StatefulWidget {
+class AddVideoButton extends StatelessWidget {
   const AddVideoButton({super.key});
 
-  @override
-  State<AddVideoButton> createState() => _AddVideoButtonState();
-}
-
-class _AddVideoButtonState extends State<AddVideoButton> {
   @override
   Widget build(BuildContext context) {
     return Padding(

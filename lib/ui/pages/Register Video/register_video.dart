@@ -44,18 +44,19 @@ class _RegisterVideoState extends State<RegisterVideo> {
                 const SizedBox(height: 32),
                 _buildSectionTitle("Preview"),
                 const SizedBox(height: 8),
-
-                // Adicionar condicao aqui
-
                 (_videoCategory != null) && (_videoThumbnailUrl != null)
                     ? VideoCard(
                         video: Video(_videoCategory, _videoThumbnailUrl))
                     : Image.asset("images/default_preview.png"),
                 const SizedBox(height: 32),
                 ActionButton(
-                    buttonText: "Cadastrar",
-                    buttonColor: const Color(0xFF2478DF),
-                    formKey: _formKey),
+                  formKey: _formKey,
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  buttonTitle: "Cadastrar",
+                  buttonColor: const Color(0xFF2478DF),
+                ),
               ],
             ),
           ),
