@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mobflix/ui/pages/Home/home.dart';
-import 'package:mobflix/ui/pages/Register%20Video/register_video.dart';
+import 'package:mobflix/ui/pages/VideoForm/video_form.dart';
 
 void main() {
   runApp(const MobFlix());
@@ -30,7 +30,7 @@ class MobFlix extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const Home(),
-        '/registerVideo': (context) => const RegisterVideo()
+        '/registerVideo': (context) => const VideoForm()
       },
       debugShowCheckedModeBanner: false,
     );
