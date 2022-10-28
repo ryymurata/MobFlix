@@ -26,6 +26,7 @@ class _VideoFormState extends State<VideoForm> {
 
   String? _videoThumbnailUrl;
   String? _videoCategory;
+  bool isValidUrl = false;
 
   @override
   Widget build(BuildContext context) {
@@ -43,10 +44,12 @@ class _VideoFormState extends State<VideoForm> {
                 const SectionTitle(title: "Cadastre um vídeo"),
                 const SizedBox(height: 32),
                 VideoUrlInput(
-                    inputTitle: "URL:",
-                    hintText: "Ex: N3h5A0oAzsk",
-                    controller: _videoUrlController,
-                    onChanged: _getVideoThumb),
+                  inputTitle: "URL:",
+                  hintText: "Ex: N3h5A0oAzsk",
+                  controller: _videoUrlController,
+                  onChanged: _getVideoThumb,
+                  isValidUrl: isValidUrl,
+                ),
                 const SizedBox(height: 32),
                 CategorySelection(
                     dropDownValue: _dropDownValue,
@@ -64,12 +67,7 @@ class _VideoFormState extends State<VideoForm> {
                   formKey: _formKey,
                   buttonTitle: "Cadastrar",
                   buttonColor: const Color(0xFF2478DF),
-                  onPressed: () {
-                    if (_videoCategory != null && _videoCategory != null) {
-                      final video = Video(_videoCategory, _videoThumbnailUrl);
-                      Navigator.pop(context, video);
-                    }
-                  },
+                  onPressed: saveVideo,
                 ),
               ],
             ),
@@ -81,12 +79,19 @@ class _VideoFormState extends State<VideoForm> {
 
   void _getVideoThumb(value) {
     if (value.length == 11) {
-      Future<String> futureVideoThumbURL = service.fetchThumbnailUrl(value);
+      Future<String?> futureVideoThumbURL = service.fetchThumbnailUrl(value);
 
       futureVideoThumbURL.then((value) {
-        setState(() {
-          _videoThumbnailUrl = value;
-        });
+        if (value != null) {
+          setState(() {
+            _videoThumbnailUrl = value;
+            isValidUrl = true;
+          });
+        } else {
+          setState(() {
+            isValidUrl = false;
+          });
+        }
       });
     } else {
       setState(() {
@@ -106,6 +111,22 @@ class _VideoFormState extends State<VideoForm> {
         _dropDownValue = value!;
         _videoCategory = null;
       });
+    }
+  }
+
+  void saveVideo() {
+    if (_formKey.currentState!.validate()) {
+      if (_videoCategory != null && _videoCategory != null) {
+        final video = Video(_videoCategory, _videoThumbnailUrl);
+        Navigator.pop(context, video);
+      }
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Vídeo adicionado!')),
+      );
+    } else {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Falha ao adicionar vídeo')),
+      );
     }
   }
 }

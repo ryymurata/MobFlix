@@ -58,8 +58,11 @@ class _HomeState extends State<Home> {
               child: FloatingActionButton(
                 backgroundColor: const Color(0xFF7B61FF),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/registerVideo')
-                      .then((video) => _addVideo(video! as Video));
+                  Navigator.pushNamed(context, '/registerVideo').then((video) {
+                    if (video != null) {
+                      _addVideo(video as Video);
+                    }
+                  });
                 },
                 child: const Icon(
                   Icons.add,

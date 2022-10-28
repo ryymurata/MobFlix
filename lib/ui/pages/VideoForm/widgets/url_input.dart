@@ -1,23 +1,19 @@
 import 'package:flutter/material.dart';
 
-class VideoUrlInput extends StatefulWidget {
+class VideoUrlInput extends StatelessWidget {
   final String inputTitle;
   final String hintText;
   final TextEditingController controller;
   final void Function(String) onChanged;
-
+  final bool isValidUrl;
   const VideoUrlInput(
       {super.key,
       required this.inputTitle,
       required this.hintText,
       required this.controller,
-      required this.onChanged});
+      required this.onChanged,
+      required this.isValidUrl});
 
-  @override
-  State<VideoUrlInput> createState() => _VideoUrlInputState();
-}
-
-class _VideoUrlInputState extends State<VideoUrlInput> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -26,19 +22,19 @@ class _VideoUrlInputState extends State<VideoUrlInput> {
         Padding(
             padding: const EdgeInsets.only(bottom: 8.0),
             child: Text(
-              widget.inputTitle,
+              inputTitle,
               style: const TextStyle(
                   color: Colors.white,
                   fontSize: 14,
                   fontWeight: FontWeight.bold),
             )),
         TextFormField(
-          controller: widget.controller,
+          controller: controller,
           validator: _validateVideoUrl,
           maxLength: 11,
           style: const TextStyle(color: Colors.white),
-          decoration: InputDecoration(hintText: widget.hintText),
-          onChanged: widget.onChanged,
+          decoration: InputDecoration(hintText: hintText),
+          onChanged: onChanged,
         ),
       ],
     );
@@ -49,6 +45,8 @@ class _VideoUrlInputState extends State<VideoUrlInput> {
       return 'Campo Obrigatório';
     } else if (value.length < 11) {
       return 'A url de um vídeo possui 11 caracteres';
+    } else if (!isValidUrl) {
+      return 'Url de vídeo inválida';
     }
 
     return null;
