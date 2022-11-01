@@ -1,16 +1,9 @@
-import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class FeaturedContent extends StatefulWidget {
+class FeaturedContent extends StatelessWidget {
   const FeaturedContent({super.key});
 
-  @override
-  State<FeaturedContent> createState() => _FeaturedContentState();
-}
-
-class _FeaturedContentState extends State<FeaturedContent> {
   @override
   Widget build(BuildContext context) {
     return Stack(

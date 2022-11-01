@@ -4,7 +4,7 @@ import 'package:mobflix/provider/video_provider.dart';
 
 import 'package:mobflix/ui/pages/Home/widgets/categories_list.dart';
 import 'package:mobflix/ui/pages/Home/widgets/featured_content.dart';
-import 'package:mobflix/ui/shared/video_card.dart';
+import 'package:mobflix/ui/shared/videos_list.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -33,18 +33,7 @@ class _HomeState extends State<Home> {
               children: [
                 const FeaturedContent(),
                 const CategoriesList(),
-                Padding(
-                  padding:
-                      const EdgeInsets.symmetric(horizontal: 35.0, vertical: 0),
-                  child: ListView.builder(
-                    physics: const NeverScrollableScrollPhysics(),
-                    shrinkWrap: true,
-                    itemCount: videosProvider!.videos.length,
-                    itemBuilder: (context, index) {
-                      return VideoCard(video: videosProvider.videos[index]);
-                    },
-                  ),
-                )
+                VideosList()
               ],
             ),
           ),
@@ -61,7 +50,7 @@ class _HomeState extends State<Home> {
                   Navigator.pushNamed(context, '/registerVideo').then((video) {
                     if (video != null) {
                       setState(() {
-                        videosProvider.videos.add(video as Video);
+                        videosProvider!.videos.add(video as Video);
                       });
                     }
                   });

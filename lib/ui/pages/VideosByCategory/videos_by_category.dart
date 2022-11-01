@@ -3,14 +3,9 @@ import 'package:mobflix/ui/shared/category_tag.dart';
 import 'package:mobflix/ui/shared/section_title.dart';
 import 'package:mobflix/ui/shared/videos_list.dart';
 
-class VideosByCategory extends StatefulWidget {
+class VideosByCategory extends StatelessWidget {
   const VideosByCategory({super.key});
 
-  @override
-  State<VideosByCategory> createState() => _VideosByCategoryState();
-}
-
-class _VideosByCategoryState extends State<VideosByCategory> {
   @override
   Widget build(BuildContext context) {
     final category = ModalRoute.of(context)!.settings.arguments as String;
@@ -24,6 +19,7 @@ class _VideosByCategoryState extends State<VideosByCategory> {
         body: SingleChildScrollView(
           physics: const ScrollPhysics(),
           child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
             children: [
               const SizedBox(height: 32),
               Padding(
