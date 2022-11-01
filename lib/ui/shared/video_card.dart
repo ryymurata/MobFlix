@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobflix/models/video.dart';
 import 'package:mobflix/services/api_service.dart';
 import 'package:mobflix/ui/shared/category_tag.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class VideoCard extends StatefulWidget {
   final Video video;
@@ -23,7 +24,8 @@ class _VideoCardState extends State<VideoCard> {
         children: [
           CategoryTag(categoryName: widget.video.videoCategory!),
           GestureDetector(
-            onTap: () {},
+            onTap: () => _launchUrl(
+                "https://www.youtube.com/watch?v=${widget.video.videoId}"),
             child: Container(
                 decoration: const BoxDecoration(boxShadow: [
                   BoxShadow(
@@ -38,5 +40,13 @@ class _VideoCardState extends State<VideoCard> {
         ],
       ),
     );
+  }
+
+  _launchUrl(String link) async {
+    final Uri url = Uri.parse(link);
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    }
   }
 }

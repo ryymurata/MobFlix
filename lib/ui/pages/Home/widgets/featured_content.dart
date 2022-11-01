@@ -1,4 +1,7 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class FeaturedContent extends StatefulWidget {
   const FeaturedContent({super.key});
@@ -17,7 +20,8 @@ class _FeaturedContentState extends State<FeaturedContent> {
         Positioned(
           bottom: 22,
           child: ElevatedButton(
-            onPressed: () {},
+            onPressed: () =>
+                _launchUrl("https://www.youtube.com/watch?v=N3h5A0oAzsk"),
             child: const Text(
               "Assista agora",
               style: TextStyle(fontSize: 18),
@@ -26,5 +30,13 @@ class _FeaturedContentState extends State<FeaturedContent> {
         )
       ],
     );
+  }
+
+  _launchUrl(String link) async {
+    final Uri url = Uri.parse(link);
+
+    if (await canLaunchUrl(url)) {
+      await launchUrl(url);
+    }
   }
 }

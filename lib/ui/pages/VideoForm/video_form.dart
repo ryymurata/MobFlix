@@ -60,7 +60,8 @@ class _VideoFormState extends State<VideoForm> {
                 const SizedBox(height: 8),
                 (_videoCategory != null) && (_videoThumbnailUrl != null)
                     ? VideoCard(
-                        video: Video(_videoCategory, _videoThumbnailUrl))
+                        video: Video(_videoUrlController.text, _videoCategory,
+                            _videoThumbnailUrl))
                     : Image.asset("images/default_preview.png"),
                 const SizedBox(height: 32),
                 ActionButton(
@@ -117,7 +118,9 @@ class _VideoFormState extends State<VideoForm> {
   void saveVideo() {
     if (_formKey.currentState!.validate()) {
       if (_videoCategory != null && _videoCategory != null) {
-        final video = Video(_videoCategory, _videoThumbnailUrl);
+        final video =
+            Video(_videoUrlController.text, _videoCategory, _videoThumbnailUrl);
+        debugPrint('$video');
         Navigator.pop(context, video);
       }
       ScaffoldMessenger.of(context).showSnackBar(

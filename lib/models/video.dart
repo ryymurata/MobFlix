@@ -1,11 +1,12 @@
 class Video {
+  String videoId;
   String? videoThumbnailUrl;
   String? videoCategory;
 
-  Video(this.videoCategory, this.videoThumbnailUrl);
+  Video(this.videoId, this.videoCategory, this.videoThumbnailUrl);
 
   @override
   String toString() {
-    return 'URL: $videoThumbnailUrl Categoria: $videoCategory';
+    return 'ID: $videoId URL: $videoThumbnailUrl Categoria: $videoCategory';
   }
 }
