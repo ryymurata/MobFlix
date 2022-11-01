@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:mobflix/models/video.dart';
 import 'package:mobflix/services/api_service.dart';
 import 'package:mobflix/ui/pages/VideoForm/widgets/category_selection.dart';
-import 'package:mobflix/ui/pages/VideoForm/widgets/section_title.dart';
+import 'package:mobflix/ui/shared/section_title.dart';
 import 'package:mobflix/ui/pages/VideoForm/widgets/url_input.dart';
 import 'package:mobflix/ui/shared/action_button.dart';
 import 'package:mobflix/ui/shared/video_card.dart';

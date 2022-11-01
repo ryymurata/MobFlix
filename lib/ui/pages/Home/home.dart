@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobflix/models/video.dart';
+import 'package:mobflix/provider/video_provider.dart';
 
 import 'package:mobflix/ui/pages/Home/widgets/categories_list.dart';
 import 'package:mobflix/ui/pages/Home/widgets/featured_content.dart';
@@ -13,10 +14,9 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  List<Video> videosList = [];
-
   @override
   Widget build(BuildContext context) {
+    final videosProvider = VideoProvider.of(context);
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -39,9 +39,9 @@ class _HomeState extends State<Home> {
                   child: ListView.builder(
                     physics: const NeverScrollableScrollPhysics(),
                     shrinkWrap: true,
-                    itemCount: videosList.length,
+                    itemCount: videosProvider!.videos.length,
                     itemBuilder: (context, index) {
-                      return VideoCard(video: videosList[index]);
+                      return VideoCard(video: videosProvider.videos[index]);
                     },
                   ),
                 )
@@ -60,7 +60,9 @@ class _HomeState extends State<Home> {
                 onPressed: () {
                   Navigator.pushNamed(context, '/registerVideo').then((video) {
                     if (video != null) {
-                      _addVideo(video as Video);
+                      setState(() {
+                        videosProvider.videos.add(video as Video);
+                      });
                     }
                   });
                 },
@@ -72,11 +74,5 @@ class _HomeState extends State<Home> {
             ),
           ),
         ));
-  }
-
-  void _addVideo(Video video) {
-    setState(() {
-      videosList.add(video);
-    });
   }
 }

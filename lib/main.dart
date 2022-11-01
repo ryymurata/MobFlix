@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:mobflix/models/video.dart';
+import 'package:mobflix/provider/video_provider.dart';
 import 'package:mobflix/ui/pages/Home/home.dart';
 import 'package:mobflix/ui/pages/VideoForm/video_form.dart';
+import 'package:mobflix/ui/pages/VideosByCategory/videos_by_category.dart';
 
 void main() {
-  runApp(const MobFlix());
+  List<Video> videos = [];
+  runApp(VideoProvider(videos: videos, child: const MobFlix()));
 }
 
 class MobFlix extends StatelessWidget {
@@ -30,7 +34,8 @@ class MobFlix extends StatelessWidget {
       ),
       routes: {
         '/': (context) => const Home(),
-        '/registerVideo': (context) => const VideoForm()
+        '/registerVideo': (context) => const VideoForm(),
+        '/videosByCategory': (context) => const VideosByCategory()
       },
       debugShowCheckedModeBanner: false,
     );

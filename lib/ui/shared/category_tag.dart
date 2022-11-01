@@ -8,7 +8,10 @@ class CategoryTag extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      onPressed: () {},
+      onPressed: () {
+        Navigator.pushNamed(context, '/videosByCategory',
+            arguments: categoryName);
+      },
       style: ElevatedButton.styleFrom(
           backgroundColor: TagColors.tagColors[categoryName],
           shape:
