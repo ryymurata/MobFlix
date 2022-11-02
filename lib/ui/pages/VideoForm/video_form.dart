@@ -27,6 +27,7 @@ class _VideoFormState extends State<VideoForm> {
   String? _videoThumbnailUrl;
   String? _videoCategory;
   bool isValidUrl = false;
+  bool editMode = false; // provisório
 
   @override
   Widget build(BuildContext context) {
@@ -64,12 +65,30 @@ class _VideoFormState extends State<VideoForm> {
                             _videoThumbnailUrl))
                     : Image.asset("images/default_preview.png"),
                 const SizedBox(height: 32),
-                ActionButton(
-                  formKey: _formKey,
-                  buttonTitle: "Cadastrar",
-                  buttonColor: const Color(0xFF2478DF),
-                  onPressed: saveVideo,
-                ),
+                editMode
+                    ? Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          ActionButton(
+                            buttonTitle: "Alterar",
+                            buttonColor: const Color(0xFF2478DF),
+                            onPressed: updateVideo,
+                          ),
+                          SizedBox(
+                            height: 16,
+                          ),
+                          ActionButton(
+                            buttonTitle: "Remover",
+                            buttonColor: const Color(0xFFD82D2D),
+                            onPressed: deleteVideo,
+                          ),
+                        ],
+                      )
+                    : ActionButton(
+                        buttonTitle: "Cadastrar",
+                        buttonColor: const Color(0xFF2478DF),
+                        onPressed: saveVideo,
+                      ),
               ],
             ),
           ),
@@ -131,5 +150,13 @@ class _VideoFormState extends State<VideoForm> {
         const SnackBar(content: Text('Falha ao adicionar vídeo')),
       );
     }
+  }
+
+  void updateVideo() {
+    //TODO: implementar updateVideo
+  }
+
+  void deleteVideo() {
+    //TODO: implementar deleteVideo
   }
 }
