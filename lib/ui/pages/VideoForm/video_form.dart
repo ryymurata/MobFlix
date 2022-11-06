@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:mobflix/models/video.dart';
+import 'package:mobflix/provider/video_provider.dart';
 import 'package:mobflix/services/api_service.dart';
 import 'package:mobflix/ui/pages/VideoForm/widgets/category_selection.dart';
 import 'package:mobflix/ui/shared/section_title.dart';
@@ -28,6 +29,34 @@ class _VideoFormState extends State<VideoForm> {
   String? _videoCategory;
   bool isValidUrl = false;
   bool editMode = false; // provisório
+  Video? editVideo;
+
+  bool aux = true;
+
+  @override
+  void didChangeDependencies() {
+    if (aux) {
+      if (ModalRoute.of(context)!.settings.arguments != null) {
+        editVideo = ModalRoute.of(context)!.settings.arguments as Video;
+        setState(() {
+          editMode = true;
+        });
+      } else {
+        editVideo = null;
+      }
+
+      if (editMode && editVideo != null) {
+        _videoUrlController.text = editVideo!.videoId;
+        _dropDownValue =
+            categories[categories.indexOf(editVideo!.videoCategory as String)];
+      } else {
+        _dropDownValue = categories.first;
+      }
+
+      aux = false;
+    }
+    super.didChangeDependencies();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -72,22 +101,24 @@ class _VideoFormState extends State<VideoForm> {
                           ActionButton(
                             buttonTitle: "Alterar",
                             buttonColor: const Color(0xFF2478DF),
-                            onPressed: updateVideo,
+                            onPressed: () => saveVideo(
+                                'Vídeo Alterado!', 'Falha ao alterar vídeo'),
                           ),
-                          SizedBox(
+                          const SizedBox(
                             height: 16,
                           ),
                           ActionButton(
                             buttonTitle: "Remover",
                             buttonColor: const Color(0xFFD82D2D),
-                            onPressed: deleteVideo,
+                            onPressed: () => deleteVideo(editVideo!.videoId),
                           ),
                         ],
                       )
                     : ActionButton(
                         buttonTitle: "Cadastrar",
                         buttonColor: const Color(0xFF2478DF),
-                        onPressed: saveVideo,
+                        onPressed: () => saveVideo(
+                            'Vídeo Adicionado!', 'Falha ao adicionar vídeo'),
                       ),
               ],
             ),
@@ -134,29 +165,30 @@ class _VideoFormState extends State<VideoForm> {
     }
   }
 
-  void saveVideo() {
+  void saveVideo(String succcessMessage, String errorMessage) {
     if (_formKey.currentState!.validate()) {
       if (_videoCategory != null && _videoCategory != null) {
         final video =
             Video(_videoUrlController.text, _videoCategory, _videoThumbnailUrl);
-        debugPrint('$video');
         Navigator.pop(context, video);
       }
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Vídeo adicionado!')),
+        SnackBar(content: Text(succcessMessage)),
       );
     } else {
       ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Falha ao adicionar vídeo')),
+        SnackBar(content: Text(errorMessage)),
       );
     }
   }
 
-  void updateVideo() {
-    //TODO: implementar updateVideo
-  }
+  void deleteVideo(videoId) {
+    final videoProvider = VideoProvider.of(context);
 
-  void deleteVideo() {
-    //TODO: implementar deleteVideo
+    setState(() {
+      videoProvider!.videos
+          .removeWhere((element) => element.videoId == videoId);
+    });
+    Navigator.pop(context);
   }
 }

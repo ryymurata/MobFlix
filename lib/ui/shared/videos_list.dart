@@ -3,18 +3,23 @@ import 'package:mobflix/models/video.dart';
 import 'package:mobflix/provider/video_provider.dart';
 import 'package:mobflix/ui/shared/video_card.dart';
 
-class VideosList extends StatelessWidget {
+class VideosList extends StatefulWidget {
   final String? category;
   const VideosList({super.key, this.category});
 
+  @override
+  State<VideosList> createState() => _VideosListState();
+}
+
+class _VideosListState extends State<VideosList> {
   @override
   Widget build(BuildContext context) {
     final videoProvider = VideoProvider.of(context);
     List<Video>? videos;
 
-    if (category != null) {
+    if (widget.category != null) {
       videos = videoProvider!.videos
-          .where((video) => video.videoCategory == category)
+          .where((video) => video.videoCategory == widget.category)
           .toList();
     } else {
       videos = List.from(videoProvider!.videos);

@@ -9,7 +9,7 @@ class VideoProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(VideoProvider oldWidget) =>
-      videos.length != oldWidget.videos.length;
+      videos != oldWidget.videos;
 
   static VideoProvider? of(BuildContext context) {
     return context.dependOnInheritedWidgetOfExactType<VideoProvider>();
